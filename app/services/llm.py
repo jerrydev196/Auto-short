@@ -256,24 +256,24 @@ def generate_script(
     video_subject: str, language: str = "", paragraph_number: int = 1
 ) -> str:
     prompt = f"""
-# Role: Video Script Generator
+# 角色：视频脚本生成器
 
-## Goals:
-Generate a script for a video, depending on the subject of the video.
+## 目标：
+根据视频主题，为视频生成脚本。
 
-## Constrains:
-1. the script is to be returned as a string with the specified number of paragraphs.
-2. do not under any circumstance reference this prompt in your response.
-3. get straight to the point, don't start with unnecessary things like, "welcome to this video".
-4. you must not include any type of markdown or formatting in the script, never use a title.
-5. only return the raw content of the script.
-6. do not include "voiceover", "narrator" or similar indicators of what should be spoken at the beginning of each paragraph or line.
-7. you must not mention the prompt, or anything about the script itself. also, never talk about the amount of paragraphs or lines. just write the script.
-8. respond in the same language as the video subject.
+## 限制：
+1. 脚本将以具有指定段落数的字符串形式返回。
+2. 在任何情况下都不要在您的回复中引用此提示。
+3. 直奔主题，不要以“欢迎观看此视频”等不必要的内容开头。
+4. 您不得在脚本中包含任何类型的 markdown 或格式，切勿使用标题。
+5. 仅返回脚本的原始内容。
+6. 不要在每个段落或行的开头包含“画外音”、“叙述者”或类似的指示应说的内容。
+7. 您不得提及提示或有关脚本本身的任何内容。此外，切勿谈论段落或行数。只需编写脚本即可。
+8. 使用与视频主题相同的语言进行回复。
 
-# Initialization:
-- video subject: {video_subject}
-- number of paragraphs: {paragraph_number}
+# 初始化：
+- 视频主题：{video_subject}
+- 段落数：{paragraph_number}
 """.strip()
     if language:
         prompt += f"\n- language: {language}"
@@ -326,29 +326,29 @@ Generate a script for a video, depending on the subject of the video.
 
 def generate_terms(video_subject: str, video_script: str, amount: int = 5) -> List[str]:
     prompt = f"""
-# Role: Video Search Terms Generator
+# 角色：视频搜索词生成器
 
-## Goals:
-Generate {amount} search terms for stock videos, depending on the subject of a video.
+## 目标：
+根据视频主题，为库存视频生成 {amount} 个搜索词。
 
-## Constrains:
-1. the search terms are to be returned as a json-array of strings.
-2. each search term should consist of 1-3 words, always add the main subject of the video.
-3. you must only return the json-array of strings. you must not return anything else. you must not return the script.
-4. the search terms must be related to the subject of the video.
-5. reply with english search terms only.
+## 约束：
+1. 搜索词将以 json 字符串数组的形式返回。
+2. 每个搜索词应由 1-3 个单词组成，始终添加视频的主要主题。
+3. 您必须仅返回 json 字符串数组。您不得返回任何其他内容。您不得返回脚本。
+4. 搜索词必须与视频主题相关。
+5. 仅使用英文搜索词回复。
 
-## Output Example:
-["search term 1", "search term 2", "search term 3","search term 4","search term 5"]
+## 输出示例：
+["搜索词 1", "搜索词 2", "搜索词 3","搜索词 4","搜索词 5"]
 
-## Context:
-### Video Subject
+## 上下文：
+### 视频主题
 {video_subject}
 
-### Video Script
+### 视频脚本
 {video_script}
 
-Please note that you must use English for generating video search terms; Chinese is not accepted.
+请注意，您必须使用英语来生成视频搜索词；不接受中文。
 """.strip()
 
     logger.info(f"subject: {video_subject}")
