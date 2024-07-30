@@ -7,6 +7,8 @@ from biliup.plugins.bili_webup import BiliBili, Data
 import json
 
 def extract_login_data(file_path):
+    file_path = "biliup/cookies.json"  # 替换为实际存储凭据的文件路径
+    login_data = extract_login_data(file_path)
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
@@ -26,10 +28,6 @@ def extract_login_data(file_path):
     }
     
     return login_data
-
-
-file_path = "biliup/cookies.json"  # 替换为实际存储凭据的文件路径
-login_data = extract_login_data(file_path)
 
 
 def extract_cover_with_watermark(folder_path, watermark_image):
@@ -90,7 +88,6 @@ def upload_video_to_bilibili(mp4_file, cover_file):
         video_cover = bili.cover_up(cover_file).replace('http:', '')  # 上传封面
         # 根据需要添加更多与 BiliBili API 交互的逻辑
         # 假设有像 `bili.append(video_part)`、`bili.submit()` 等方法
-
     print(f"成功上传视频: {mp4_file}")
 
 if __name__ == "__main__":
