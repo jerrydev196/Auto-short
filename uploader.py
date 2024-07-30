@@ -7,7 +7,7 @@ import subprocess
 import json
 
 def extract_cover_with_watermark(folder_path, watermark_image):
-    video_file = os.path.join(folder_path, 'combined-1.mp4')
+    video_file = os.path.join(folder_path, 'final-1.mp4')
     output_file = os.path.join(folder_path, 'cover_with_watermark.jpg')
     
     # 获取视频的持续时间
